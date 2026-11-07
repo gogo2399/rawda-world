@@ -2,153 +2,320 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#203b32">
-  <title>رَوْضَة | عالمك الذي لا تنتهي حدوده</title>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:'Cairo',sans-serif;background:#f5f5ed;color:#263b30}
-    a{text-decoration:none;color:inherit}
-    .hero{
-      min-height:92vh;position:relative;display:flex;align-items:center;
-      justify-content:center;text-align:center;color:white;padding:35px 20px;
-      background:linear-gradient(180deg,rgba(13,35,28,.25),rgba(13,35,28,.72)),
-      url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2000&q=85') center/cover;
-    }
-    .hero-content{max-width:750px}
-    .small-title{letter-spacing:3px;font-size:13px;color:#e7d8ad}
-    h1{font-family:'Amiri',serif;font-size:clamp(65px,13vw,115px);font-weight:700;margin:10px 0;line-height:1.3}
-    .hero p{font-size:clamp(16px,3vw,22px);color:#f3f0e6}
-    .hero a{display:inline-block;margin-top:30px;padding:12px 30px;border:1px solid #e5d6ad;border-radius:30px;color:white;transition:.3s}
-    .hero a:hover{background:#e5d6ad;color:#263b30}
-    nav{position:absolute;top:0;right:0;left:0;display:flex;justify-content:space-between;align-items:center;padding:22px 7%;z-index:2}
-    .brand{font-family:'Amiri',serif;font-size:27px}
-    nav a{font-size:14px;margin-right:20px;color:#fff}
-    section{padding:85px 7%}
-    .section-heading{text-align:center;margin-bottom:40px}
-    .section-heading span{color:#9b8052;font-size:13px}
-    h2{font-family:'Amiri',serif;font-size:42px;font-weight:700;margin:8px 0}
-    .intro{text-align:center;max-width:750px;margin:auto;line-height:2.2;color:#647267}
-    .regions{background:#eeefe6}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
-    .card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 8px 25px #243a3010;transition:.3s}
-    .card:hover{transform:translateY(-6px)}
-    .card img{width:100%;height:210px;object-fit:cover;display:block}
-    .card-content{padding:20px}
-    .card h3{font-family:'Amiri',serif;font-size:27px;margin-bottom:7px}
-    .card p{font-size:14px;line-height:1.9;color:#738076}
-    .about{background:#f8f7f0;text-align:center}
-    .about-box{max-width:780px;margin:auto;padding:35px;border:1px solid #ded8c5;border-radius:18px;line-height:2.2}
-    .quote{font-family:'Amiri',serif;font-size:28px;color:#8a754e;margin-bottom:12px}
-    footer{text-align:center;padding:28px;background:#203b32;color:#e9e7dc;font-size:13px}
-    @media(max-width:600px){
-      nav{padding:18px 5%}
-      nav div:last-child{display:none}
-      section{padding:65px 6%}
-      h2{font-size:35px}
-      .about-box{padding:22px}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رَوْضَة | عالمك الذي لا تنتهي حدوده</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f5f5ed;color:#263b30;font-family:Cairo,sans-serif}
+header{min-height:390px;padding:35px 20px;display:flex;align-items:center;justify-content:center;text-align:center;color:white;background:linear-gradient(#102d2580,#102d25b8),url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=85') center/cover}
+h1{font: bold 85px Amiri;margin:0}
+header p{font-size:20px}
+nav{padding:16px 6%;display:flex;justify-content:space-between;align-items:center;background:#203b32;color:white}
+button{font-family:inherit;cursor:pointer;border:0;border-radius:9px;padding:10px 17px;background:#315c49;color:white}
+button:hover{opacity:.88}
+button.secondary{background:#e8e9df;color:#263b30}
+button.danger{background:#a94343}
+main{max-width:1100px;margin:auto;padding:35px 18px}
+h2{font: bold 36px Amiri;text-align:center}
+.intro{text-align:center;color:#68766b;line-height:2}
+.panel{background:white;padding:22px;border-radius:14px;margin:25px 0;box-shadow:0 5px 20px #0000000b}
+input,textarea,select{width:100%;padding:12px;margin:7px 0 14px;border:1px solid #d6dbd2;border-radius:8px;font:inherit;background:#fff}
+textarea{min-height:75px}
+label{font-size:14px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card{background:white;border-radius:13px;overflow:hidden;box-shadow:0 5px 20px #00000010}
+.card img{width:100%;height:175px;object-fit:cover;background:#e7e9df}
+.card .body{padding:15px}
+.card h3{font: bold 25px Amiri;margin:0 0 6px}
+.card p{color:#667368;line-height:1.8;font-size:14px}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.hidden{display:none!important}
+.status{text-align:center;padding:12px;color:#315c49}
+footer{text-align:center;background:#203b32;color:#eee;padding:25px;margin-top:50px}
+hr{border:0;border-top:1px solid #e5e7df;margin:25px 0}
+@media(max-width:600px){h1{font-size:65px}header{min-height:330px}main{padding:25px 13px}}
+</style>
 </head>
 <body>
 
-<header class="hero">
-  <nav>
-    <a class="brand" href="#">رَوْضَة</a>
-    <div>
-      <a href="#about">عن العالم</a>
-      <a href="#regions">المناطق</a>
-    </div>
-  </nav>
+<nav>
+  <strong style="font:26px Amiri">رَوْضَة</strong>
+  <div>
+    <button id="loginBtn" onclick="showLogin()">دخول المالك</button>
+    <button id="logoutBtn" class="secondary hidden" onclick="logout()">تسجيل الخروج</button>
+  </div>
+</nav>
 
-  <div class="hero-content">
-    <div class="small-title">عَالَمٌ مِنَ الخَيَالِ وَالطَّبِيعَة</div>
+<header>
+  <div>
     <h1>رَوْضَة</h1>
     <p>عالمك الذي لا تنتهي حدوده</p>
-    <a href="#regions">اكتشف العالم</a>
   </div>
 </header>
 
-<section id="about" class="about">
-  <div class="section-heading">
-    <span>حيث يبدأ الخيال</span>
+<main>
+  <section>
     <h2>مرحبًا بك في رَوْضَة</h2>
-  </div>
-  <div class="about-box">
-    <div class="quote">هنا، للطبيعة حكاية لا تنتهي.</div>
-    <p class="intro">
-      عالم واسع تتعانق فيه الطبيعة والخيال،
-      وتظل فيه السماء صافية، والنسائم هادئة،
-      وتجد كل روح مكانًا تنتمي إليه.
-      لكل منطقة حكايتها، ولكل طريق اكتشاف جديد.
-    </p>
-  </div>
-</section>
+    <p class="intro">عالم واسع تتعانق فيه الطبيعة والخيال، ولكل منطقة حكايتها ولكل طريق اكتشاف جديد.</p>
+  </section>
 
-<section id="regions" class="regions">
-  <div class="section-heading">
-    <span>اكتشف أرجاء العالم</span>
+  <div id="message" class="status">جارٍ الاتصال بالعالم...</div>
+
+  <section id="loginPanel" class="panel hidden">
+    <h2>دخول المالك</h2>
+    <form id="loginForm">
+      <label>البريد الإلكتروني</label>
+      <input id="email" type="email" required>
+      <label>كلمة المرور</label>
+      <input id="password" type="password" required>
+      <button type="submit">دخول</button>
+      <button type="button" class="secondary" onclick="hideLogin()">إلغاء</button>
+    </form>
+  </section>
+
+  <section id="adminPanel" class="panel hidden">
+    <h2>لوحة إدارة رَوْضَة</h2>
+    <p class="intro">أنت مسجل الدخول. يمكنك إضافة المناطق ومحتويات العالم وإدارتها.</p>
+
+    <hr>
+    <h3>إضافة منطقة جديدة</h3>
+    <form id="regionForm">
+      <input id="regionName" placeholder="اسم المنطقة" required>
+      <textarea id="regionDescription" placeholder="وصف المنطقة"></textarea>
+      <input id="regionImage" type="url" placeholder="رابط صورة المنطقة (اختياري)">
+      <button type="submit">إضافة المنطقة</button>
+    </form>
+
+    <hr>
+    <h3>إضافة محتوى جديد</h3>
+    <form id="itemForm">
+      <input id="itemName" placeholder="اسم الشخصية أو الكائن أو المبنى" required>
+      <select id="itemCategory">
+        <option value="character">شخصية</option>
+        <option value="animal">كائن حي</option>
+        <option value="building">مبنى</option>
+        <option value="place">مكان</option>
+        <option value="other">أخرى</option>
+      </select>
+      <select id="itemRegion" required>
+        <option value="">اختر المنطقة</option>
+      </select>
+      <textarea id="itemDescription" placeholder="الوصف"></textarea>
+      <input id="itemImage" type="url" placeholder="رابط الصورة (اختياري)">
+      <button type="submit">إضافة المحتوى</button>
+    </form>
+  </section>
+
+  <section>
     <h2>مناطق رَوْضَة</h2>
-    <p class="intro">لكل مكان طبيعته الخاصة، ولكل زاوية جمالها.</p>
-  </div>
+    <div id="regions" class="grid"></div>
+  </section>
 
-  <div class="cards">
+  <section>
+    <h2>سكان العالم ومحتوياته</h2>
+    <div id="items" class="grid"></div>
+  </section>
+</main>
+
+<footer>رَوْضَة © 2026 — عالمك الذي لا تنتهي حدوده</footer>
+
+<script>
+const SUPABASE_URL = "https://jrjbbmqejytzthxmwjrv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_i5ydZFrZC0dAd3fmmepzhQ_a7i8uS7J";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let currentUser = null;
+let regionsData = [];
+
+function message(text) {
+  document.getElementById("message").textContent = text;
+}
+
+function safe(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;",
+    '"':"&quot;", "'":"&#39;"
+  })[c]);
+}
+
+function showLogin() {
+  document.getElementById("loginPanel").classList.remove("hidden");
+}
+
+function hideLogin() {
+  document.getElementById("loginPanel").classList.add("hidden");
+}
+
+async function updateSession(session) {
+  currentUser = session?.user ?? null;
+  document.getElementById("loginBtn").classList.toggle("hidden", !!currentUser);
+  document.getElementById("logoutBtn").classList.toggle("hidden", !currentUser);
+  document.getElementById("adminPanel").classList.toggle("hidden", !currentUser);
+}
+
+async function logout() {
+  const {error} = await db.auth.signOut();
+  if (error) return message(error.message);
+  message("تم تسجيل الخروج");
+  await loadAll();
+}
+
+document.getElementById("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  message("جارٍ تسجيل الدخول...");
+  const {data, error} = await db.auth.signInWithPassword({
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value
+  });
+  if (error) return message("تعذر تسجيل الدخول: " + error.message);
+  await updateSession(data.session);
+  hideLogin();
+  message("أهلًا بك في لوحة إدارة رَوْضَة");
+});
+
+async function loadRegions() {
+  const {data, error} = await db.from("regions").select("*").order("sort_order");
+  if (error) {
+    message("تعذر تحميل المناطق: " + error.message);
+    return;
+  }
+  regionsData = data || [];
+  const container = document.getElementById("regions");
+  container.innerHTML = regionsData.length ? regionsData.map(r => `
     <article class="card">
-      <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=900&q=80" alt="غابة خضراء">
-      <div class="card-content">
-        <h3>الغابة</h3>
-        <p>أشجار عالية، وطرقات طبيعية، ومياه جارية بين أحضان الطبيعة.</p>
+      ${r.image_url ? `<img src="${safe(r.image_url)}" alt="${safe(r.name)}">` : ""}
+      <div class="body">
+        <h3>${safe(r.name)}</h3>
+        <p>${safe(r.description)}</p>
+        ${currentUser ? `<div class="actions">
+          <button class="secondary" onclick="editRegion('${r.id}')">تعديل</button>
+          <button class="danger" onclick="deleteRegion('${r.id}')">حذف</button>
+        </div>` : ""}
       </div>
     </article>
+  `).join("") : "<p>لم تتم إضافة مناطق بعد.</p>";
 
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="طبيعة خضراء">
-      <div class="card-content">
-        <h3>التلال الخضراء</h3>
-        <p>مساحات واسعة من العشب الأخضر، وموطن رعد وقطيعه.</p>
+  document.getElementById("itemRegion").innerHTML =
+    '<option value="">اختر المنطقة</option>' +
+    regionsData.map(r => `<option value="${r.id}">${safe(r.name)}</option>`).join("");
+}
+
+async function loadItems() {
+  const {data, error} = await db.from("world_items").select("*").order("sort_order");
+  if (error) return message("تعذر تحميل المحتويات: " + error.message);
+  const container = document.getElementById("items");
+  container.innerHTML = (data || []).length ? data.map(item => {
+    const region = regionsData.find(r => r.id === item.region_id);
+    return `<article class="card">
+      ${item.image_url ? `<img src="${safe(item.image_url)}" alt="${safe(item.name)}">` : ""}
+      <div class="body">
+        <h3>${safe(item.name)}</h3>
+        <p>${safe(item.description)}</p>
+        <small>${safe(region?.name || "بدون منطقة")} — ${safe(item.category)}</small>
+        ${currentUser ? `<div class="actions">
+          <button class="secondary" onclick="editItem('${item.id}')">تعديل</button>
+          <button class="danger" onclick="deleteItem('${item.id}')">حذف</button>
+        </div>` : ""}
       </div>
-    </article>
+    </article>`;
+  }).join("") : "<p>لم تتم إضافة محتويات بعد.</p>";
+}
 
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80" alt="البحر">
-      <div class="card-content">
-        <h3>البحر</h3>
-        <p>شاطئ رملي واسع، وأمواج هادئة، وأفق يلتقي فيه البحر بالسماء.</p>
-      </div>
-    </article>
+async function loadAll() {
+  await loadRegions();
+  await loadItems();
+}
 
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1418985991508-e47386d96a71?auto=format&fit=crop&w=900&q=80" alt="منطقة ثلجية">
-      <div class="card-content">
-        <h3>أرض الثلوج</h3>
-        <p>عالم شتوي هادئ، وجبل جليدي، وقصر من الثلج.</p>
-      </div>
-    </article>
+document.getElementById("regionForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const record = {
+    name: document.getElementById("regionName").value.trim(),
+    description: document.getElementById("regionDescription").value.trim(),
+    image_url: document.getElementById("regionImage").value.trim()
+  };
+  const {error} = await db.from("regions").insert(record);
+  if (error) return message("لم تتم الإضافة: " + error.message);
+  e.target.reset();
+  message("تمت إضافة المنطقة بنجاح");
+  await loadAll();
+});
 
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=80" alt="ورود">
-      <div class="card-content">
-        <h3>حديقة الفردوس</h3>
-        <p>حديقة الورود، حيث تتساقط بتلات الزهور من السحب.</p>
-      </div>
-    </article>
+document.getElementById("itemForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const record = {
+    name: document.getElementById("itemName").value.trim(),
+    category: document.getElementById("itemCategory").value,
+    region_id: document.getElementById("itemRegion").value,
+    description: document.getElementById("itemDescription").value.trim(),
+    image_url: document.getElementById("itemImage").value.trim()
+  };
+  if (!record.region_id) return message("اختر المنطقة أولًا");
+  const {error} = await db.from("world_items").insert(record);
+  if (error) return message("لم تتم الإضافة: " + error.message);
+  e.target.reset();
+  message("تمت إضافة المحتوى بنجاح");
+  await loadAll();
+});
 
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=900&q=80" alt="حيوانات وسط الطبيعة">
-      <div class="card-content">
-        <h3>عالم الكائنات</h3>
-        <p>كائنات حرة تعيش في أرجاء العالم، لكل منها موطنها وحكايتها.</p>
-      </div>
-    </article>
-  </div>
-</section>
+async function editRegion(id) {
+  const r = regionsData.find(x => x.id === id);
+  const name = prompt("اسم المنطقة:", r.name);
+  if (name === null) return;
+  const description = prompt("وصف المنطقة:", r.description || "");
+  if (description === null) return;
+  const image_url = prompt("رابط الصورة:", r.image_url || "");
+  if (image_url === null) return;
+  const {error} = await db.from("regions").update({name, description, image_url}).eq("id", id);
+  if (error) return message("تعذر التعديل: " + error.message);
+  message("تم تعديل المنطقة");
+  await loadAll();
+}
 
-<footer>
-  رَوْضَة © 2026 — عالمك الذي لا تنتهي حدوده
-</footer>
+async function deleteRegion(id) {
+  if (!confirm("هل أنت متأكد من حذف المنطقة؟")) return;
+  const {error} = await db.from("regions").delete().eq("id", id);
+  if (error) return message("تعذر الحذف: " + error.message);
+  message("تم حذف المنطقة ومحتوياتها المرتبطة بها");
+  await loadAll();
+}
 
+async function editItem(id) {
+  const {data, error: readError} = await db.from("world_items").select("*").eq("id", id).single();
+  if (readError) return message(readError.message);
+  const name = prompt("الاسم:", data.name);
+  if (name === null) return;
+  const description = prompt("الوصف:", data.description || "");
+  if (description === null) return;
+  const image_url = prompt("رابط الصورة:", data.image_url || "");
+  if (image_url === null) return;
+  const {error} = await db.from("world_items").update({name, description, image_url}).eq("id", id);
+  if (error) return message("تعذر التعديل: " + error.message);
+  message("تم تعديل المحتوى");
+  await loadItems();
+}
+
+async function deleteItem(id) {
+  if (!confirm("هل أنت متأكد من حذف هذا المحتوى؟")) return;
+  const {error} = await db.from("world_items").delete().eq("id", id);
+  if (error) return message("تعذر الحذف: " + error.message);
+  message("تم الحذف");
+  await loadItems();
+}
+
+db.auth.onAuthStateChange((_event, session) => {
+  updateSession(session);
+  loadAll();
+});
+
+(async () => {
+  const {data} = await db.auth.getSession();
+  await updateSession(data.session);
+  await loadAll();
+  message("رَوْضَة متصلة بقاعدة البيانات");
+})();
+</script>
 </body>
 </html>
