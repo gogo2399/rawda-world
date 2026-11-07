@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#203b32">
+  <title>رَوْضَة | عالمك الذي لا تنتهي حدوده</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Cairo',sans-serif;background:#f5f5ed;color:#263b30}
+    a{text-decoration:none;color:inherit}
+    .hero{
+      min-height:92vh;position:relative;display:flex;align-items:center;
+      justify-content:center;text-align:center;color:white;padding:35px 20px;
+      background:linear-gradient(180deg,rgba(13,35,28,.25),rgba(13,35,28,.72)),
+      url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2000&q=85') center/cover;
+    }
+    .hero-content{max-width:750px}
+    .small-title{letter-spacing:3px;font-size:13px;color:#e7d8ad}
+    h1{font-family:'Amiri',serif;font-size:clamp(65px,13vw,115px);font-weight:700;margin:10px 0;line-height:1.3}
+    .hero p{font-size:clamp(16px,3vw,22px);color:#f3f0e6}
+    .hero a{display:inline-block;margin-top:30px;padding:12px 30px;border:1px solid #e5d6ad;border-radius:30px;color:white;transition:.3s}
+    .hero a:hover{background:#e5d6ad;color:#263b30}
+    nav{position:absolute;top:0;right:0;left:0;display:flex;justify-content:space-between;align-items:center;padding:22px 7%;z-index:2}
+    .brand{font-family:'Amiri',serif;font-size:27px}
+    nav a{font-size:14px;margin-right:20px;color:#fff}
+    section{padding:85px 7%}
+    .section-heading{text-align:center;margin-bottom:40px}
+    .section-heading span{color:#9b8052;font-size:13px}
+    h2{font-family:'Amiri',serif;font-size:42px;font-weight:700;margin:8px 0}
+    .intro{text-align:center;max-width:750px;margin:auto;line-height:2.2;color:#647267}
+    .regions{background:#eeefe6}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+    .card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 8px 25px #243a3010;transition:.3s}
+    .card:hover{transform:translateY(-6px)}
+    .card img{width:100%;height:210px;object-fit:cover;display:block}
+    .card-content{padding:20px}
+    .card h3{font-family:'Amiri',serif;font-size:27px;margin-bottom:7px}
+    .card p{font-size:14px;line-height:1.9;color:#738076}
+    .about{background:#f8f7f0;text-align:center}
+    .about-box{max-width:780px;margin:auto;padding:35px;border:1px solid #ded8c5;border-radius:18px;line-height:2.2}
+    .quote{font-family:'Amiri',serif;font-size:28px;color:#8a754e;margin-bottom:12px}
+    footer{text-align:center;padding:28px;background:#203b32;color:#e9e7dc;font-size:13px}
+    @media(max-width:600px){
+      nav{padding:18px 5%}
+      nav div:last-child{display:none}
+      section{padding:65px 6%}
+      h2{font-size:35px}
+      .about-box{padding:22px}
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <nav>
+    <a class="brand" href="#">رَوْضَة</a>
+    <div>
+      <a href="#about">عن العالم</a>
+      <a href="#regions">المناطق</a>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="small-title">عَالَمٌ مِنَ الخَيَالِ وَالطَّبِيعَة</div>
+    <h1>رَوْضَة</h1>
+    <p>عالمك الذي لا تنتهي حدوده</p>
+    <a href="#regions">اكتشف العالم</a>
+  </div>
+</header>
+
+<section id="about" class="about">
+  <div class="section-heading">
+    <span>حيث يبدأ الخيال</span>
+    <h2>مرحبًا بك في رَوْضَة</h2>
+  </div>
+  <div class="about-box">
+    <div class="quote">هنا، للطبيعة حكاية لا تنتهي.</div>
+    <p class="intro">
+      عالم واسع تتعانق فيه الطبيعة والخيال،
+      وتظل فيه السماء صافية، والنسائم هادئة،
+      وتجد كل روح مكانًا تنتمي إليه.
+      لكل منطقة حكايتها، ولكل طريق اكتشاف جديد.
+    </p>
+  </div>
+</section>
+
+<section id="regions" class="regions">
+  <div class="section-heading">
+    <span>اكتشف أرجاء العالم</span>
+    <h2>مناطق رَوْضَة</h2>
+    <p class="intro">لكل مكان طبيعته الخاصة، ولكل زاوية جمالها.</p>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=900&q=80" alt="غابة خضراء">
+      <div class="card-content">
+        <h3>الغابة</h3>
+        <p>أشجار عالية، وطرقات طبيعية، ومياه جارية بين أحضان الطبيعة.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="طبيعة خضراء">
+      <div class="card-content">
+        <h3>التلال الخضراء</h3>
+        <p>مساحات واسعة من العشب الأخضر، وموطن رعد وقطيعه.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80" alt="البحر">
+      <div class="card-content">
+        <h3>البحر</h3>
+        <p>شاطئ رملي واسع، وأمواج هادئة، وأفق يلتقي فيه البحر بالسماء.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1418985991508-e47386d96a71?auto=format&fit=crop&w=900&q=80" alt="منطقة ثلجية">
+      <div class="card-content">
+        <h3>أرض الثلوج</h3>
+        <p>عالم شتوي هادئ، وجبل جليدي، وقصر من الثلج.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=80" alt="ورود">
+      <div class="card-content">
+        <h3>حديقة الفردوس</h3>
+        <p>حديقة الورود، حيث تتساقط بتلات الزهور من السحب.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=900&q=80" alt="حيوانات وسط الطبيعة">
+      <div class="card-content">
+        <h3>عالم الكائنات</h3>
+        <p>كائنات حرة تعيش في أرجاء العالم، لكل منها موطنها وحكايتها.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer>
+  رَوْضَة © 2026 — عالمك الذي لا تنتهي حدوده
+</footer>
+
+</body>
+</html>
